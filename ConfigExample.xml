@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='us-ascii'?> 
+<!--
+
+Variables declared in the script that can be used/referenced:
+
+%toName% - The Full Name of the recipient specified in the CSV file
+%toEmail% - The email of the recipient specified in the CSV file
+%ccName% - The Full Name of the recipients' manager specified in the CSV file
+%ccEmail% - The email of the recipients' manager specified in the CSV file
+
+You can declare as many attachments as needed.  Add another <attachment></attachment> line with the full path of each attachment
+If the attachment is an image that will be referenced in an HTML file that will be sent - in the HTML file,when specifying the path of the image file, prefix cid:.
+For example: <img src="cid:logo.png">
+
+-->
+<configuration>
+	<SendMassMailMeta>
+		<FromLine><!--information required to get the from line.  Example: "John Smith <jsmith@github.com" -->
+			<FirstName>Terry</FirstName><!-- Example: John Smith, jsmith@github.com.  First Name: John -->
+			<LastName>Trent</LastName><!-- Example: John Smith, jsmith@github.com.  Last Name: Smith -->
+			<EmailAddress>ttrent1101@gmail.com</EmailAddress><!-- Example: John Smith, jsmith@github.com.  Email Address: jsmith@github.com -->
+		</FromLine>
+		<SMTPServer>smtp.google.com</SMTPServer><!-- FQDN or IP Address of SMTP Server -->
+		<EmailSubject>%toName%, your email is being delivered!</EmailSubject><!-- You can use variables specified above in the subject -->
+		<ListToSend>C:\Users\ttrent1101\GitHub\Send-Mass-Email\CSV File\mail.csv</ListToSend><!-- Full Path to CSV File with the following header: "FullName,Email,Manager,ManEmail"-->
+	</SendMassMailMeta>
+	<SendMassMailContent>
+		<BodyAsHTML>Yes</BodyAsHTML><!-- Yes or No-->
+		<BodyHTMLToSend>C:\Users\ttrent1101\GitHub\Send-Mass-Email\HTML Message\body.htm</BodyHTMLToSend><!-- If BodyAsHTML is No, leave empty - this will be ignored; Otherwise Full Path to HTML file-->
+		<BodyTextToSend></BodyTextToSend><!-- If BodyAsHTML is Yes, leave empty - this will be ignored; Otherwise Full Path to TXT file-->
+		<attachment>C:\Users\ttrent1101\GitHub\Send-Mass-Email\HTML Message\Images\logo.jpg</attachment><!-- Full Path to Attachment. Example: "C:\Users\JSmith\Documents\Logos\logo.png" -->
+		<attachment>C:\Users\ttrent1101\GitHub\Send-Mass-Email\HTML Message\Images\facebook.png</attachment><!-- Full Path to Attachment. Example: "C:\Users\JSmith\Documents\Logos\logo.png" -->
+		<attachment>C:\Users\ttrent1101\GitHub\Send-Mass-Email\HTML Message\Images\twitter.png</attachment><!-- Full Path to Attachment. Example: "C:\Users\JSmith\Documents\Logos\logo.png" -->
+		<attachment>C:\Users\ttrent1101\GitHub\Send-Mass-Email\HTML Message\Images\linkedin.png</attachment><!-- Full Path to Attachment. Example: "C:\Users\JSmith\Documents\Logos\logo.png" -->
+	</SendMassMailContent>
+</configuration>
